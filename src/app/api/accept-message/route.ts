@@ -2,6 +2,7 @@ import dbConnect from "@/lib/dbConnect";
 import UserModel from "@/modal/users";
 import { User } from "next-auth";
 import { auth } from "@/auth";
+import { acceptMessageValidation } from "@/zodValidators/acceptMessageSchema";
 
 //return message accepting status
 export async function GET(request: Request) {
@@ -83,6 +84,27 @@ export async function POST(request: Request) {
 
   const userId = session.user._id;
   const { acceptMessages } = await request.json();
+
+  //validate username using zod
+  const { success, error } = acceptMessageValidation.safeParse({
+    acceptMessages,
+  });
+
+  if (!success) {
+    const acceptMessagesError = error.format()._errors || [];
+    return Response.json(
+      {
+        success: false,
+        message:
+          acceptMessagesError.length > 0
+            ? acceptMessagesError.join(", ")
+            : "Invalid acceptMessage field",
+      },
+      {
+        status: 400,
+      }
+    );
+  }
 
   try {
     const updatedUser = await UserModel.findByIdAndUpdate(
