@@ -38,3 +38,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 ## LEARINGS
 
 - a schema is a configuration object for a model. Schemas do not allow you to read and write from MongoDB, that's what models are for.
+
+- i am storing all the anonymous message send to user in a message array which has collection of mesages as a document itself
+
+- if user wants to fetch messages then one could think of dumping all the messages directly but that's not a optimized solution rather built a aggregation pipeline to
