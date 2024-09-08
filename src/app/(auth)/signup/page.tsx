@@ -175,7 +175,7 @@ const SignUpPage = () => {
                 </FormItem>
               )}
             />
-            <Button type="submit">
+            <Button type="submit" disabled={isSubmitting}>
               {isSubmitting ? (
                 <>
                   <Loader2 className="mr-2 size-1" />
