@@ -89,7 +89,7 @@ const SignUpPage = () => {
 
       let errorMessage =
         axiosError.response?.data.message ??
-        "Problem signup the user. Try again";
+        "Problem while signup the user. Try again";
 
       toast({
         variant: "destructive",
@@ -111,7 +111,7 @@ const SignUpPage = () => {
           <p className="mb-4">Sign up to start your anonymous adventure</p>
         </div>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
             <FormField
               name="username"
               control={form.control}
@@ -155,9 +155,9 @@ const SignUpPage = () => {
                   <FormControl>
                     <Input placeholder="email" type="email" {...field} />
                   </FormControl>
-                  <p className="text-muted text-gray-400 text-sm">
+                  {/* <p className="text-muted text-gray-400 text-sm">
                     We will send you a verification code
-                  </p>
+                  </p> */}
                   <FormMessage />
                 </FormItem>
               )}
